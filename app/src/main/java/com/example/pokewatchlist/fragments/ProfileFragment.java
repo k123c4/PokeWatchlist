@@ -1,66 +1,96 @@
 package com.example.pokewatchlist.fragments;
 
+
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.pokewatchlist.R;
+import com.bumptech.glide.Glide;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class ProfileFragment extends Fragment {
+public class    ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private ImageView pokemonIV;
+    private TextView nameTV;
+    private TextView idTV;
+    private TextView heightTV;
+    private TextView weightTV;
+    private TextView baseXpTV;
+    private TextView moveTV;
+    private TextView abilityTV;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
+        View root = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        pokemonIV = root.findViewById(R.id.pokemonIV);
+        nameTV = root.findViewById(R.id.nameTV);
+        idTV = root.findViewById(R.id.idTV);
+        heightTV = root.findViewById(R.id.heightTV);
+        weightTV = root.findViewById(R.id.weightTV);
+        baseXpTV = root.findViewById(R.id.baseXpTV);
+        moveTV = root.findViewById(R.id.moveTV);
+        abilityTV = root.findViewById(R.id.abilityTV);
+
+        return root;
+
+}
+    public void clearProfile() {
+        if (nameTV == null) {
+            return;
+        }
+
+        nameTV.setText("Name:");
+        idTV.setText("ID:");
+        heightTV.setText("Height:");
+        weightTV.setText("Weight:");
+        baseXpTV.setText("Base XP:");
+        moveTV.setText("Move:");
+        abilityTV.setText("Ability:");
+        if (pokemonIV != null) {
+            pokemonIV.setImageDrawable(null);
         }
     }
+    public void updateProfile(String name,
+                              int id,
+                              int height,
+                              int weight,
+                              int baseXp,
+                              String move,
+                              String ability,
+                              String spriteUrl) {
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        if (nameTV == null) {
+            // View not created yet; nothing to update safely
+            return;
+        }
+
+        nameTV.setText("Name: " + name);
+        idTV.setText("ID: " + id);
+        heightTV.setText("Height: " + height);
+        weightTV.setText("Weight: " + weight);
+        baseXpTV.setText("Base XP: " + baseXp);
+        moveTV.setText("Move: " + move);
+        abilityTV.setText("Ability: " + ability);
+        if (pokemonIV != null) {
+            if (spriteUrl != null && spriteUrl.length() > 0) {
+                Glide.with(this)
+                        .load(spriteUrl)
+                        .into(pokemonIV);
+            } else {
+                pokemonIV.setImageDrawable(null);
+            }
+        }
     }
 }
