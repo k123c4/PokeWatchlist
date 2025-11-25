@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/mahogany">
 
-    
+
     <LinearLayout
         android:id="@+id/topSectionLL"
         android:layout_width="match_parent"
@@ -18,7 +19,12 @@
             android:name="com.example.pokewatchlist.fragments.SearchFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/card_background"
+            />
 
 
         <androidx.fragment.app.FragmentContainerView
@@ -26,7 +32,10 @@
             android:name="com.example.pokewatchlist.fragments.WatchlistFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/card_background" />
     </LinearLayout>
 
 
@@ -35,6 +44,11 @@
         android:name="com.example.pokewatchlist.fragments.ProfileFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/card_background" />
 
 </LinearLayout>
