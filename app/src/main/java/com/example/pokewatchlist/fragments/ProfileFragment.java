@@ -72,7 +72,7 @@ public class    ProfileFragment extends Fragment {
                               String spriteUrl) {
 
         if (nameTV == null) {
-            // View not created yet; nothing to update safely
+           // prevent null pointers
             return;
         }
 
