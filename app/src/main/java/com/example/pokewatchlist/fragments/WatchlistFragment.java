@@ -19,6 +19,9 @@ public class WatchlistFragment extends Fragment {
 
     private ListView watchlistLV;
 
+    private ListAdapter pendingAdapter;
+    private AdapterView.OnItemClickListener pendingClickListener;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -27,15 +30,27 @@ public class WatchlistFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_watchlist, container, false);
         watchlistLV = root.findViewById(R.id.watchlistLV);
+
+        if (pendingAdapter != null) {
+            watchlistLV.setAdapter(pendingAdapter);
+        }
+
+        if (pendingClickListener != null) {
+            watchlistLV.setOnItemClickListener(pendingClickListener);
+        }
         return root;
     }
     public void setWatchlistAdapter(ListAdapter adapter) {
+        pendingAdapter = adapter;
         if (watchlistLV != null) {
             watchlistLV.setAdapter(adapter);
         }
     }
 
     public void setOnWatchlistItemClickListener(AdapterView.OnItemClickListener listener) {
+
+        pendingClickListener = listener;
+
         if (watchlistLV != null) {
             watchlistLV.setOnItemClickListener(listener);
         }
